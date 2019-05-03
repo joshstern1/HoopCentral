@@ -48,12 +48,6 @@ void FirstWindow::on_pushButton_2_clicked()
     // Player one goes first
     QMessageBox::about(this, "Player 1", "Player 1 get ready!!");
 
-    // Start timer for each second count
-    //QTimer *timer = new QTimer(this);
-    //connect(timer, SIGNAL(timeout()), this, SLOT(MyTimerSlot()));
-    //timer->start(1000);
-
-    //Add code to send 1 into the sensor to start the counting
     ofstream myfile;
     myfile.open ("/dev/hcsr04");
     myfile << "1";
@@ -68,13 +62,11 @@ void FirstWindow::on_pushButton_2_clicked()
     do{
         update_score1();
 	usleep(500000);
-	//sleep(1);
 	count--;
     }while(count > 0);
     myfile.open ("/dev/hcsr04");
     myfile << "2";
     myfile.close();
-
 
     // Player 2 goes now
     QMessageBox::about(this, "Player 2", "Player 2 get ready!!");
@@ -86,7 +78,6 @@ void FirstWindow::on_pushButton_2_clicked()
     do{
         update_score2();
 	usleep(500000);
-	//sleep(1);
 	count--;
     }while(count > 0);
     
@@ -106,14 +97,8 @@ void FirstWindow::on_pushButton_2_clicked()
     myfile.open ("/dev/hcsr04");
     myfile << "4";
     myfile.close();
-
+	
     ui->stackedWidget->setCurrentIndex(0);
-}
-
-void FirstWindow::MyTimerSlot()
-{
-    count--;
-    qDebug() << count;
 }
 
 void FirstWindow::update_score1()
