@@ -21,12 +21,10 @@ public:
     int p2_score;
 
 private slots:
-    void MyTimerSlot();
     void update_score1();
     void update_score2();
 
     void on_pushButton_2_clicked();
-
 
 private:
     Ui::FirstWindow *ui;
